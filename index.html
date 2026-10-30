@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LobeWise — Audiophile Simulation Suite</title>
+    <meta
+      name="description"
+      content="Design, verify, measure and tune loudspeakers in your browser. Drivers, cabinet, crossover, directivity, room and listening — every step with explained pass/fail checks."
+      data-i18n-attr="content:meta.description"
+    />
+    <meta property="og:title" content="LobeWise — Audiophile Simulation Suite" />
+    <meta property="og:description" content="Design, verify, measure and tune loudspeakers in your browser." data-i18n-attr="content:meta.og" />
+    <meta property="og:image" content="img/og-banner.jpg" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="img/favicon.png" />
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+    <link rel="preload" as="image" href="img/hero-app.webp" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip" href="#features" data-i18n="skip">Skip to content</a>
+
+    <header class="nav" id="top">
+      <div class="wrap nav__in">
+        <a class="brand" href="#top" aria-label="LobeWise">
+          <img src="img/favicon.png" alt="" width="34" height="34" />
+          <span>Lobe<em>Wise</em></span>
+        </a>
+        <nav class="nav__links" aria-label="Main">
+          <a href="#features" data-i18n="nav.features">Features</a>
+          <a href="#how" data-i18n="nav.how">How it works</a>
+          <a href="#measure" data-i18n="nav.measure">Measure &amp; tune</a>
+          <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
+          <a href="#faq" data-i18n="nav.faq">FAQ</a>
+        </nav>
+        <div class="nav__cta">
+          <div class="lang" role="group" aria-label="Language">
+            <button type="button" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" data-lang="nl" aria-pressed="false">NL</button>
+          </div>
+          <a class="btn btn--primary" href="app/" data-app-link data-i18n="nav.open">Open the app</a>
+          <button type="button" class="nav__burger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+      <div class="nav__mobile" id="mobile-menu" hidden>
+        <a href="#features" data-i18n="nav.features">Features</a>
+        <a href="#how" data-i18n="nav.how">How it works</a>
+        <a href="#measure" data-i18n="nav.measure">Measure &amp; tune</a>
+        <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
+        <a href="#faq" data-i18n="nav.faq">FAQ</a>
+      </div>
+    </header>
+
+    <main>
+      <!-- ===== Hero ===== -->
+      <section class="hero">
+        <div class="hero__bg" aria-hidden="true">
+          <svg class="lobes" viewBox="-300 -300 600 600" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <radialGradient id="g-copper" cx="50%" cy="50%" r="50%">
+                <stop offset="0" stop-color="#e2a062" stop-opacity=".55" />
+                <stop offset="1" stop-color="#e2a062" stop-opacity="0" />
+              </radialGradient>
+              <radialGradient id="g-teal" cx="50%" cy="50%" r="50%">
+                <stop offset="0" stop-color="#2aa6c4" stop-opacity=".5" />
+                <stop offset="1" stop-color="#2aa6c4" stop-opacity="0" />
+              </radialGradient>
+            </defs>
+            <g class="lobes__set lobes__set--a">
+              <path class="lobe" d="" data-lobe="2.2" />
+              <path class="lobe" d="" data-lobe="3.4" />
+              <path class="lobe" d="" data-lobe="5.1" />
+            </g>
+            <g class="lobes__set lobes__set--b">
+              <path class="lobe lobe--teal" d="" data-lobe="1.6" />
+              <path class="lobe lobe--teal" d="" data-lobe="2.8" />
+            </g>
+            <circle class="lobes__glow" r="220" fill="url(#g-copper)" />
+            <circle class="lobes__glow lobes__glow--teal" r="180" fill="url(#g-teal)" />
+          </svg>
+          <div class="grid-fade"></div>
+        </div>
+
+        <div class="wrap hero__in">
+          <div class="hero__copy">
+            <p class="eyebrow reveal" data-i18n="hero.eyebrow">Audiophile Simulation Suite · runs in your browser</p>
+            <h1 class="reveal" data-i18n="hero.title">Design, verify and tune loudspeakers you can trust.</h1>
+            <p class="lead reveal" data-i18n="hero.lead">
+              From driver files to a crossover you can build, a cabinet that behaves and a room you can actually hear — every step with pass/fail checks
+              and a plain-language explanation. No install. No account. Your data never leaves your device.
+            </p>
+            <div class="hero__actions reveal">
+              <a class="btn btn--primary btn--lg" href="app/" data-app-link data-i18n="hero.cta1">Start free</a>
+              <a class="btn btn--ghost btn--lg" href="#pricing" data-i18n="hero.cta2">See Pro</a>
+            </div>
+            <ul class="hero__facts reveal">
+              <li><strong>7</strong> <span data-i18n="hero.f1">guided steps</span></li>
+              <li><strong data-count="283">0</strong> <span data-i18n="hero.f2">automated tests</span></li>
+              <li><strong data-count="120">0</strong> <span data-i18n="hero.f3">drivers in the library</span></li>
+              <li><strong>0</strong> <span data-i18n="hero.f4">servers · your files stay local</span></li>
+            </ul>
+          </div>
+
+          <div class="hero__visual reveal">
+            <figure class="device device--laptop">
+              <img src="img/hero-app.webp" alt="LobeWise crossover step: schematic editor with a two-way filter" width="1440" height="900" />
+            </figure>
+            <figure class="device device--phone">
+              <img src="img/phone.webp" alt="LobeWise cabinet step on a phone" width="390" height="844" loading="lazy" />
+            </figure>
+            <svg class="curve" viewBox="0 0 600 160" aria-hidden="true">
+              <path class="curve__grid" d="M0 40H600M0 80H600M0 120H600" />
+              <path class="curve__line curve__line--wf" d="M0 150 C 60 60, 90 42, 160 40 S 300 44, 360 70 S 440 150, 520 150" />
+              <path class="curve__line curve__line--tw" d="M240 150 C 300 120, 340 60, 400 44 S 540 40, 600 52" />
+              <path class="curve__line curve__line--sum" d="M0 150 C 60 60, 90 42, 160 40 S 320 36, 400 38 S 540 40, 600 50" />
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Validation strip ===== -->
+      <section class="strip">
+        <div class="wrap strip__in reveal">
+          <p data-i18n="strip.text">
+            Validated against published builds — Paul Carmody's <strong>Classix III</strong> and Troels Gravesen's <strong>Dayton-3WC</strong> sum within
+            1 dB of the designers' own measurements — and against an independent Python reference for every solver.
+          </p>
+        </div>
+      </section>
+
+      <!-- ===== Features ===== -->
+      <section class="section" id="features">
+        <div class="wrap">
+          <header class="section__head reveal">
+            <p class="eyebrow" data-i18n="features.eyebrow">Why LobeWise</p>
+            <h2 data-i18n="features.title">One tab replaces a desk full of tools.</h2>
+            <p class="section__lead" data-i18n="features.lead">
+              Crossover, cabinet, directivity, room and listening share one project and one physics core — so a change in the cabinet shows up in the
+              impedance, the lobing and the room response at once.
+            </p>
+          </header>
+
+          <div class="features">
+            <article class="feature reveal">
+              <div class="feature__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 12h3l2-6 4 12 2-6h5" /></svg>
+              </div>
+              <h3 data-i18n="features.1.t">Real circuit solver</h3>
+              <p data-i18n="features.1.d">
+                Nodal analysis of your actual schematic: coils with DCR, capacitors with ESR, inverted drivers, measured impedance. Zmin, EPDR and the load
+                on every part at your amplifier's clip level.
+              </p>
+            </article>
+            <article class="feature reveal">
+              <div class="feature__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2" /><circle cx="12" cy="9" r="2.4" /><circle cx="12" cy="16" r="3" /></svg>
+              </div>
+              <h3 data-i18n="features.2.t">Cabinets that behave</h3>
+              <p data-i18n="features.2.d">
+                Sealed, vented, aperiodic, passive radiator, bandpass, transmission line and horn. Port velocity, pipe resonance, cone excursion against
+                Xmax, wall thickness and baffle diffraction per driver position.
+              </p>
+            </article>
+            <article class="feature reveal">
+              <div class="feature__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 21V3" /><path d="M5 14c3-6 11-6 14 0" /><path d="M8 10c2-3 6-3 8 0" /></svg>
+              </div>
+              <h3 data-i18n="features.3.t">Off-axis, not just on-axis</h3>
+              <p data-i18n="features.3.d">
+                CTA-2034 listening window, horizontal and vertical polars, lobing between drivers, spinorama and the Olive preference score — from geometry
+                you drag on the baffle.
+              </p>
+            </article>
+            <article class="feature reveal">
+              <div class="feature__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M3 20V8l9-5 9 5v12" /><path d="M7 20v-7h10v7" /></svg>
+              </div>
+              <h3 data-i18n="features.4.t">Hear it in your room</h3>
+              <p data-i18n="features.4.d">
+                Image-source reflections, room modes below Schroeder, SBIR and floor bounce. Then listen on headphones: direct sound, each wall on or off,
+                A/B between two designs.
+              </p>
+            </article>
+            <article class="feature reveal">
+              <div class="feature__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4z" /><path d="M5 18l.9 2 2.1.5-2.1.5L5 23l-.9-2L2 20.5l2.1-.5z" /></svg>
+              </div>
+              <h3 data-i18n="features.5.t">Every warning has a fix</h3>
+              <p data-i18n="features.5.d">
+                Each check explains its limit and its method, and offers a button. “Solve everything” tries every fix, re-checks the whole project after each
+                one and keeps only what makes the total better — one undo step.
+              </p>
+            </article>
+            <article class="feature reveal">
+              <div class="feature__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><circle cx="8" cy="12" r="2" /><path d="M13 10h5M13 14h5" /></svg>
+              </div>
+              <h3 data-i18n="features.6.t">From schematic to soldering iron</h3>
+              <p data-i18n="features.6.d">
+                A board view drawn as built, realistic part sizes, SVG at 1:1 mm, a bill of materials, .crover export and a build pack with the netlist and
+                driver files.
+              </p>
+            </article>
+            <article class="feature reveal">
+              <div class="feature__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 0 1 5 5v5a5 5 0 0 1-10 0V7a5 5 0 0 1 5-5z" /><path d="M5 12a7 7 0 0 0 14 0M12 19v3" /></svg>
+              </div>
+              <h3 data-i18n="features.7.t">Measure with your own mic</h3>
+              <p data-i18n="features.7.d">
+                Sweep, deconvolution, gating, calibration files and REW import. Compare the measurement with the prediction, tune digitally, then turn the
+                correction into passive parts.
+              </p>
+            </article>
+            <article class="feature reveal">
+              <div class="feature__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3" /></svg>
+              </div>
+              <h3 data-i18n="features.8.t">Private by design</h3>
+              <p data-i18n="features.8.d">
+                Everything runs in your browser. Projects are saved locally and exported as readable JSON. No account, no upload, no tracking.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Showcase ===== -->
+      <section class="section section--alt" id="showcase">
+        <div class="wrap">
+          <div class="show reveal">
+            <div class="show__text">
+              <p class="eyebrow" data-i18n="show.1.e">Verification</p>
+              <h2 data-i18n="show.1.t">Every number with its limit, its method and what to do.</h2>
+              <p data-i18n="show.1.d">
+                Impedance against your amplifier, part loads for sine and music, listening-window flatness, lobing at 30°, tweeter resonance distance —
+                one table, six statuses, nothing hidden behind a score.
+              </p>
+            </div>
+            <figure class="shot"><img src="img/verify.webp" alt="Verification step with directivity checks and polar charts" loading="lazy" width="1440" height="735" /></figure>
+          </div>
+          <div class="show show--flip reveal">
+            <div class="show__text">
+              <p class="eyebrow" data-i18n="show.2.e">Cabinet</p>
+              <h2 data-i18n="show.2.t">Drag the drivers, see the bass change.</h2>
+              <p data-i18n="show.2.d">
+                The front view, the box model, the port and the excursion respond live. Seven enclosure types share one acoustic model, so switching from
+                vented to aperiodic is one click, not a new project.
+              </p>
+            </div>
+            <figure class="shot"><img src="img/cabinet.webp" alt="Cabinet step with front view, SPL and impedance of the box" loading="lazy" width="1440" height="735" /></figure>
+          </div>
+          <div class="show reveal">
+            <div class="show__text">
+              <p class="eyebrow" data-i18n="show.3.e">Board view</p>
+              <h2 data-i18n="show.3.t">The crossover the way you will build it.</h2>
+              <p data-i18n="show.3.d">
+                Shunt chains to ground, series parts along the signal path, driver terminals on the edge. Drag parts, export the board at 1:1 and measure
+                your own components before you drill.
+              </p>
+            </div>
+            <figure class="shot"><img src="img/board.webp" alt="Board view of the crossover as built" loading="lazy" width="1440" height="735" /></figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== How it works ===== -->
+      <section class="section" id="how">
+        <div class="wrap">
+          <header class="section__head reveal">
+            <p class="eyebrow" data-i18n="how.eyebrow">How it works</p>
+            <h2 data-i18n="how.title">Seven steps. Jump anywhere; the checks follow you.</h2>
+          </header>
+          <ol class="steps reveal" data-steps>
+            <li class="step is-active" data-step>
+              <span class="step__n">1</span>
+              <h3 data-i18n="how.1.t">Targets</h3>
+              <p data-i18n="how.1.d">Speaker type, placement, listening distance, max SPL, amplifier. These become the limits of every check.</p>
+            </li>
+            <li class="step" data-step>
+              <span class="step__n">2</span>
+              <h3 data-i18n="how.2.t">Drivers</h3>
+              <p data-i18n="how.2.d">Drop FRD/ZMA files, pick from the library or enter Thiele/Small. Maker headers are recognised.</p>
+            </li>
+            <li class="step" data-step>
+              <span class="step__n">3</span>
+              <h3 data-i18n="how.3.t">Cabinet</h3>
+              <p data-i18n="how.3.d">Box, port, driver positions, wall thickness. Excursion, port speed and diffraction update live.</p>
+            </li>
+            <li class="step" data-step>
+              <span class="step__n">4</span>
+              <h3 data-i18n="how.4.t">Crossover</h3>
+              <p data-i18n="how.4.d">Draw the filter, start from a template or import .crover. Sum, impedance, group delay, part loads.</p>
+            </li>
+            <li class="step" data-step>
+              <span class="step__n">5</span>
+              <h3 data-i18n="how.5.t">Verification</h3>
+              <p data-i18n="how.5.d">All checks in one table, with directivity, lobing and the listening window.</p>
+            </li>
+            <li class="step" data-step>
+              <span class="step__n">6</span>
+              <h3 data-i18n="how.6.t">Room</h3>
+              <p data-i18n="how.6.d">Place speakers and seat, choose materials, see reflections, modes and SBIR.</p>
+            </li>
+            <li class="step" data-step>
+              <span class="step__n">7</span>
+              <h3 data-i18n="how.7.t">Listen</h3>
+              <p data-i18n="how.7.d">Headphone auralisation from the same simulation. Walls on/off, A/B, guided listening tests.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ===== Measure & tune ===== -->
+      <section class="section section--alt" id="measure">
+        <div class="wrap">
+          <header class="section__head reveal">
+            <p class="eyebrow eyebrow--pro"><span class="tag">Pro</span> <span data-i18n="measure.eyebrow">Measure &amp; tune track</span></p>
+            <h2 data-i18n="measure.title">Close the loop: measure, correct, and make it passive.</h2>
+            <p class="section__lead" data-i18n="measure.lead">
+              The second track takes a built speaker back into the model. Measure it with your own microphone, correct it digitally while you listen, then
+              let LobeWise find the passive parts that do the same job — and verify the result with a control measurement.
+            </p>
+          </header>
+          <div class="track">
+            <article class="track__item reveal">
+              <span class="track__code">M1</span>
+              <h3 data-i18n="measure.1.t">Measure</h3>
+              <p data-i18n="measure.1.d">Device check with a low test tone, sweep, deconvolution, gating, mic calibration, REW import, absolute SPL.</p>
+            </article>
+            <article class="track__item reveal">
+              <span class="track__code">M2</span>
+              <h3 data-i18n="measure.2.t">Tune digitally</h3>
+              <p data-i18n="measure.2.d">Target curve, parametric EQ, bounded autotune. One filter definition drives the chart and the playback.</p>
+            </article>
+            <article class="track__item reveal">
+              <span class="track__code">M3</span>
+              <h3 data-i18n="measure.3.t">Play &amp; A/B</h3>
+              <p data-i18n="measure.3.d">Your own music, level-matched A/B between variants, clip and headroom meter, smooth parameter changes.</p>
+            </article>
+            <article class="track__item reveal">
+              <span class="track__code">M4</span>
+              <h3 data-i18n="measure.4.t">Redesign passively</h3>
+              <p data-i18n="measure.4.d">
+                Optimiser inside your existing topology, realistic losses, E-series rounding, EPDR before/after — as a variant you can build and measure
+                again.
+              </p>
+            </article>
+          </div>
+          <figure class="shot shot--wide reveal">
+            <img src="img/redesign.webp" alt="Passive redesign step with correction choice, limits and locks" loading="lazy" width="1440" height="735" />
+          </figure>
+        </div>
+      </section>
+
+      <!-- ===== Compare ===== -->
+      <section class="section" id="compare">
+        <div class="wrap">
+          <header class="section__head reveal">
+            <p class="eyebrow" data-i18n="compare.eyebrow">Compared</p>
+            <h2 data-i18n="compare.title">One project instead of five exports.</h2>
+            <p class="section__lead" data-i18n="compare.lead">
+              Good separate tools exist for each job. What they cannot do is tell each other when something changed.
+            </p>
+          </header>
+          <div class="table reveal" role="table">
+            <div class="table__row table__row--head" role="row">
+              <span role="columnheader" data-i18n="compare.h1">Capability</span>
+              <span role="columnheader">LobeWise</span>
+              <span role="columnheader" data-i18n="compare.h3">Separate tools</span>
+            </div>
+            <div class="table__row" role="row">
+              <span role="cell" data-i18n="compare.r1">Crossover, cabinet, directivity and room in one model</span>
+              <span role="cell" class="yes">✓</span>
+              <span role="cell" class="no" data-i18n="compare.export">manual export/import</span>
+            </div>
+            <div class="table__row" role="row">
+              <span role="cell" data-i18n="compare.r2">Explained pass/fail checks with a fix button</span>
+              <span role="cell" class="yes">✓</span>
+              <span role="cell" class="no">—</span>
+            </div>
+            <div class="table__row" role="row">
+              <span role="cell" data-i18n="compare.r3">Headphone auralisation of the design in a room</span>
+              <span role="cell" class="yes">✓</span>
+              <span role="cell" class="no" data-i18n="compare.rare">rare</span>
+            </div>
+            <div class="table__row" role="row">
+              <span role="cell" data-i18n="compare.r4">Measurement → digital correction → passive parts</span>
+              <span role="cell" class="yes">✓</span>
+              <span role="cell" class="no" data-i18n="compare.byhand">by hand</span>
+            </div>
+            <div class="table__row" role="row">
+              <span role="cell" data-i18n="compare.r5">Board view as built, 1:1 export, bill of materials</span>
+              <span role="cell" class="yes">✓</span>
+              <span role="cell" class="no" data-i18n="compare.partly">partly</span>
+            </div>
+            <div class="table__row" role="row">
+              <span role="cell" data-i18n="compare.r6">Runs in the browser, no install, no account</span>
+              <span role="cell" class="yes">✓</span>
+              <span role="cell" class="no" data-i18n="compare.varies">varies</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Pricing ===== -->
+      <section class="section section--alt" id="pricing">
+        <div class="wrap">
+          <header class="section__head reveal">
+            <p class="eyebrow" data-i18n="pricing.eyebrow">Pricing</p>
+            <h2 data-i18n="pricing.title">Design for free. Go Pro when you build.</h2>
+            <div class="billing" role="group" aria-label="Billing period">
+              <button type="button" class="is-active" data-billing="month" aria-pressed="true" data-i18n="pricing.monthly">Monthly</button>
+              <button type="button" data-billing="year" aria-pressed="false">
+                <span data-i18n="pricing.yearly">Yearly</span> <small data-i18n="pricing.save">save 27%</small>
+              </button>
+            </div>
+          </header>
+
+          <div class="plans">
+            <article class="plan reveal">
+              <h3 data-i18n="pricing.free.name">Free</h3>
+              <p class="plan__price"><span class="plan__amount">€0</span></p>
+              <p class="plan__tag" data-i18n="pricing.free.tag">Everything you need to design a speaker.</p>
+              <ul class="plan__list">
+                <li data-i18n="pricing.free.1">Targets → Drivers → Cabinet → Crossover → Verification</li>
+                <li data-i18n="pricing.free.2">Full circuit solver, all enclosure types, directivity checks</li>
+                <li data-i18n="pricing.free.3">Driver library, two example projects</li>
+                <li data-i18n="pricing.free.4">1 project, export and import as JSON and .crover</li>
+                <li data-i18n="pricing.free.5">Fix button on every warning</li>
+              </ul>
+              <a class="btn btn--ghost btn--block" href="app/" data-app-link data-i18n="pricing.free.cta">Start free</a>
+            </article>
+
+            <article class="plan plan--pro reveal">
+              <p class="plan__badge" data-i18n="pricing.pro.badge">Most complete</p>
+              <h3>Pro</h3>
+              <p class="plan__price">
+                <span class="plan__amount" data-price-month="€9" data-price-year="€79">€9</span>
+                <span class="plan__per" data-per-month data-i18n="pricing.perMonth">/ month</span>
+                <span class="plan__per" data-per-year hidden data-i18n="pricing.perYear">/ year</span>
+              </p>
+              <p class="plan__tag" data-i18n="pricing.pro.tag">For people who build, measure and iterate.</p>
+              <ul class="plan__list">
+                <li data-i18n="pricing.pro.1">Everything in Free</li>
+                <li data-i18n="pricing.pro.2">Room simulation and headphone listening</li>
+                <li data-i18n="pricing.pro.3">Measure &amp; tune track (M1–M6): mic, REW, PEQ, A/B, passive redesign</li>
+                <li data-i18n="pricing.pro.4">“Solve everything”, optimiser, spinorama, tolerances</li>
+                <li data-i18n="pricing.pro.5">Unlimited projects, variants with build status, build pack export</li>
+                <li data-i18n="pricing.pro.6">Priority support and early features</li>
+              </ul>
+              <a class="btn btn--primary btn--block" href="#waitlist" data-i18n="pricing.pro.cta">Join the Pro waitlist</a>
+              <p class="plan__note" data-i18n="pricing.pro.note">Pro launches soon. Waitlist members get the first month free.</p>
+            </article>
+          </div>
+
+          <form class="waitlist reveal" id="waitlist" data-waitlist>
+            <h3 data-i18n="waitlist.title">Get Pro first</h3>
+            <p data-i18n="waitlist.lead">Leave your e-mail and we'll tell you when Pro opens. Your mail client opens with a prefilled message — nothing is stored here.</p>
+            <div class="waitlist__row">
+              <label>
+                <span data-i18n="waitlist.name">Name</span>
+                <input type="text" name="name" autocomplete="name" data-i18n-attr="placeholder:waitlist.namePh" placeholder="Your name" />
+              </label>
+              <label>
+                <span data-i18n="waitlist.email">E-mail</span>
+                <input type="email" name="email" autocomplete="email" required placeholder="you@example.com" />
+              </label>
+              <label>
+                <span data-i18n="waitlist.plan">Plan</span>
+                <select name="plan">
+                  <option value="monthly" data-i18n="waitlist.monthly">Pro monthly (€9)</option>
+                  <option value="yearly" data-i18n="waitlist.yearly">Pro yearly (€79)</option>
+                </select>
+              </label>
+              <button type="submit" class="btn btn--primary" data-i18n="waitlist.cta">Join waitlist</button>
+            </div>
+            <p class="waitlist__msg" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <!-- ===== FAQ ===== -->
+      <section class="section" id="faq">
+        <div class="wrap wrap--narrow">
+          <header class="section__head reveal">
+            <p class="eyebrow">FAQ</p>
+            <h2 data-i18n="faq.title">Questions, answered.</h2>
+          </header>
+          <div class="faq reveal">
+            <details>
+              <summary data-i18n="faq.1.q">Does it really run entirely in the browser?</summary>
+              <p data-i18n="faq.1.a">Yes. The solvers, the audio engine and the storage are all client-side. Projects live in your browser's storage and are exported as plain JSON. There is no server to send anything to.</p>
+            </details>
+            <details>
+              <summary data-i18n="faq.2.q">Which files can I use?</summary>
+              <p data-i18n="faq.2.a">FRD and ZMA driver files (manufacturer or your own), REW exports, .crover projects, microphone calibration files, and WAV/MP3/FLAC music for listening. Everything can be exported again.</p>
+            </details>
+            <details>
+              <summary data-i18n="faq.3.q">How accurate is the simulation?</summary>
+              <p data-i18n="faq.3.a">Every solver is tested against an independent Python reference and the suite has 283 automated tests. Two published designs, Classix III and Dayton-3WC, sum within about 1 dB of the designers' measurements. Where the model stops, a check says “outside model” instead of guessing.</p>
+            </details>
+            <details>
+              <summary data-i18n="faq.4.q">What is in Free, what is in Pro?</summary>
+              <p data-i18n="faq.4.a">Free covers the full design flow up to verification with one project. Pro adds the room and listening steps, the measure-and-tune track, the optimiser and “Solve everything”, spinorama and tolerances, unlimited projects and build-pack export.</p>
+            </details>
+            <details>
+              <summary data-i18n="faq.5.q">How does the subscription work?</summary>
+              <p data-i18n="faq.5.a">Pro is a monthly or yearly subscription you can cancel at any time. Your projects remain yours and stay exportable, also after cancelling. Payment opens together with Pro; the waitlist is free.</p>
+            </details>
+            <details>
+              <summary data-i18n="faq.6.q">Do I need a measurement microphone?</summary>
+              <p data-i18n="faq.6.a">Not for designing. For the measure-and-tune track any USB or calibrated measurement mic works; calibration files are supported. The app never routes a microphone to your speakers.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Final CTA ===== -->
+      <section class="cta">
+        <div class="wrap cta__in reveal">
+          <img src="img/banner.webp" alt="" width="1408" height="768" class="cta__logo" loading="lazy" />
+          <h2 data-i18n="cta.title">Your next speaker starts with a check, not a guess.</h2>
+          <div class="hero__actions">
+            <a class="btn btn--primary btn--lg" href="app/" data-app-link data-i18n="cta.1">Open LobeWise</a>
+            <a class="btn btn--ghost btn--lg" href="#waitlist" data-i18n="cta.2">Pro waitlist</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap footer__in">
+        <p>© <span data-year>2026</span> LobeWise · <span data-i18n="footer.tag">Audiophile Simulation Suite</span></p>
+        <p class="footer__links">
+          <a href="https://github.com/mpeters21575/lobewise" rel="noopener">GitHub</a>
+          <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
+          <a href="mailto:mark.peters.21575@gmail.com" data-i18n="footer.contact">Contact</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="i18n.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
