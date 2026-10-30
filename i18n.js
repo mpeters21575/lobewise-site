@@ -15,7 +15,7 @@ window.LOBEWISE_I18N = {
     'hero.eyebrow': 'Audiophile Simulation Suite · draait in je browser',
     'hero.title': 'Ontwerp, controleer en tune luidsprekers waar je op kunt bouwen.',
     'hero.lead':
-      'Van driverbestanden naar een crossover die je kunt bouwen, een kast die zich gedraagt en een kamer die je echt kunt horen. Elke stap met pass/fail-controles en een uitleg in gewone taal. Geen installatie, geen account. Je data blijft op je eigen apparaat.',
+      'Van driverbestanden naar een crossover die je kunt bouwen, een kast die zich gedraagt en een kamer die je echt kunt horen. Elke stap met pass/fail-controles en een uitleg in gewone taal. Geen installatie, geen account, geen wachtwoord. Je data blijft op je eigen apparaat.',
     'hero.cta1': 'Start gratis',
     'hero.cta2': 'Bekijk Pro',
     'hero.f1': 'begeleide stappen',
@@ -52,7 +52,8 @@ window.LOBEWISE_I18N = {
     'features.7.d':
       'Sweep, deconvolutie, venstering, kalibratiebestanden en REW-import. Vergelijk de meting met de voorspelling, tune digitaal en zet de correctie om in passieve onderdelen.',
     'features.8.t': 'Privé van ontwerp',
-    'features.8.d': 'Alles draait in je browser. Projecten worden lokaal bewaard en als leesbare JSON geëxporteerd. Geen account, geen upload, geen tracking.',
+    'features.8.d':
+      'Alles draait in je browser. Projecten worden lokaal bewaard en als leesbare JSON geëxporteerd. Geen account, geen wachtwoord, geen upload, geen tracking. Pro ontgrendel je met een licentiesleutel die je per e-mail krijgt.',
 
     'show.1.e': 'Verificatie',
     'show.1.t': 'Elk getal met zijn grens, zijn methode en wat je kunt doen.',
@@ -108,7 +109,7 @@ window.LOBEWISE_I18N = {
     'compare.r3': 'Koptelefoon-auralisatie van het ontwerp in een kamer',
     'compare.r4': 'Meting → digitale correctie → passieve onderdelen',
     'compare.r5': 'Bord zoals gebouwd, 1:1-export, stuklijst',
-    'compare.r6': 'Draait in de browser, geen installatie, geen account',
+    'compare.r6': 'Draait in de browser, geen installatie, geen account of wachtwoord',
     'compare.export': 'handmatig exporteren/importeren',
     'compare.rare': 'zeldzaam',
     'compare.byhand': 'met de hand',
@@ -138,6 +139,7 @@ window.LOBEWISE_I18N = {
     'pricing.pro.4': '"Alles oplossen", optimizer, spinorama, toleranties',
     'pricing.pro.5': 'Onbeperkt projecten, varianten met bouwstatus, bouwpakket-export',
     'pricing.pro.6': 'Voorrang bij support en nieuwe functies',
+    'pricing.pro.7': 'Ontgrendeld met een licentiesleutel per e-mail: geen account, werkt offline',
     'pricing.pro.cta': 'Op de Pro-wachtlijst',
     'pricing.pro.note': 'Pro komt binnenkort. Wie op de wachtlijst staat, krijgt de eerste maand gratis.',
 
@@ -170,7 +172,13 @@ window.LOBEWISE_I18N = {
       'Gratis dekt de volledige ontwerpflow tot en met verificatie, met één project. Pro voegt de stappen Kamer en Luisteren toe, het meet- en tuningspoor, de optimizer en "Alles oplossen", spinorama en toleranties, onbeperkt projecten en de bouwpakket-export.',
     'faq.5.q': 'Hoe werkt het abonnement?',
     'faq.5.a':
-      'Pro is een maand- of jaarabonnement dat je altijd kunt opzeggen. Je projecten blijven van jou en blijven exporteerbaar, ook na opzeggen. Betalen opent samen met Pro; de wachtlijst is gratis.',
+      'Pro is een maand- of jaarabonnement dat je altijd kunt opzeggen. Betalen loopt via Stripe, dat ook facturen en opzeggen regelt. Je projecten blijven van jou en blijven exporteerbaar, ook na opzeggen. Betalen opent samen met Pro; de wachtlijst is gratis.',
+    'faq.7.q': 'Geen account, hoe ontgrendelt Pro dan?',
+    'faq.7.a':
+      'Met een licentiesleutel. Na betaling krijg je per e-mail een ondertekende sleutel, geldig voor de betaalde periode. Plak hem één keer in LobeWise: de app controleert de handtekening op je eigen apparaat, zonder een server te raadplegen, en zet Pro aan. Bij elke verlenging komt er automatisch een nieuwe sleutel. Er is geen wachtwoord en niets om op in te loggen; de sleutel werkt ook offline en op je andere apparaten.',
+    'faq.8.q': 'Wat gebeurt er als ik opzeg?',
+    'faq.8.a':
+      'Pro blijft actief tot het einde van de betaalde periode, daarna gaan de Pro-stappen weer op slot. Alles wat je maakte blijft: projecten, metingen en varianten staan op je apparaat en blijven exporteerbaar, en de ontwerpstappen blijven gratis werken. Omdat er geen cloud is, is er niets te verwijderen en niets te synchroniseren.',
     'faq.6.q': 'Heb ik een meetmicrofoon nodig?',
     'faq.6.a':
       'Niet om te ontwerpen. Voor het meet- en tuningspoor werkt elke USB- of gekalibreerde meetmicrofoon; kalibratiebestanden worden ondersteund. De app stuurt een microfoon nooit naar je luidsprekers.',
