@@ -196,6 +196,8 @@ Hier maak je de kast en zet je de drivers op hun plek. Je ziet direct wat dat do
 2. Vul de **Wanddikte** in (18 of 19 mm bij MDF of multiplex). LobeWise controleert of het netto volume echt in de kast past.
 3. Zet de drivers op hun plek. In het **Vooraanzicht** sleep je ze over het front (x en y); in het **Zijaanzicht** sleep je ze in de diepte (z). Klik een driver aan en vul onder **Positie van …** de getallen exact in, op de millimeter. Met de pijltjestoetsen verschuif je 1 mm, met Shift 10 mm. Tijdens het slepen klikt een driver vast op de middenlijn van het front en op de x of y van de andere drivers (je ziet dan een stippellijn), zodat ze exact uitgelijnd staan. Met de knoppen **Horizontaal uitlijnen** en **Verticaal uitlijnen** zet je in één keer alle drivers op dezelfde hoogte (een center met de woofers naast elkaar) of op dezelfde verticale lijn (een boekenplank of toren). Houd de drivers op één verticale lijn; de tweeter komt op oorhoogte, meestal 85 tot 100 cm boven de vloer als de kast op een standaard staat.
 
+**Heb je al een tekening?** Sleep een 2D-tekening van de kast als DXF-bestand in het vak onder de maten (of klik **DXF kiezen…**). LobeWise leest de grootste rechthoek met gaten erin als het front, een even hoge rechthoek ernaast als het zijaanzicht (dat geeft de diepte) en de cirkels in het front als drivergaten. Je ziet eerst een voorstel, bijvoorbeeld *Front 216 × 356 mm, diepte 318 mm, 2 gaten: Ø 118 op (0, −32), Ø 28 op (0, 111)*. Klik **Overnemen** en de maten en de posities worden gezet: het grootste gat gaat naar de grootste driver, het kleinste naar de kleinste. Zijn er meer gaten dan drivers (een poort bijvoorbeeld), dan zegt LobeWise welk gat niet gekoppeld is. Schroefgaatjes (kleiner dan 1 cm) worden overgeslagen; van een dubbele cirkel (uitsparing en flens) telt de binnenste. De tekening moet een ASCII-DXF zijn (elk CAD-programma exporteert dat); de eenheid komt uit het bestand, anders millimeters. Niet goed? Eén keer Ongedaan maken.
+
 ![Voor- en zijaanzicht van de kast met sleepbare drivers en de positievelden eronder.](img/placement.webp)
 *Voor- en zijaanzicht van de kast met sleepbare drivers en de positievelden eronder.*
 
@@ -217,12 +219,23 @@ Elke woofer heeft een kamer. Klik erop en kies:
 - **Netto volume**: begin met het kastadvies van de driver. Groter geeft dieper maar slapper laag; kleiner geeft strakker maar minder diep laag.
 - **Poort** (bij basreflex): kies een diameter van minstens 5 cm voor een 6,5-inch woofer en klik **Afstemmen op … Hz**: LobeWise berekent de lengte. Mik op een afstemming rond de fs van de woofer of iets eronder.
 
+**Vulling (demping)**
+
+Elke kamer heeft een veld **Vulling**: geen, licht (wanden bekleed), normaal (los gevuld) of zwaar (dicht gepakt). Kies normaal voor een gesloten kast en licht of normaal voor een basreflexkast, met de poortmond vrij.
+
+- **Te weinig vulling.** De achterkant van de conus zet de lucht in de kast in beweging. Tussen de wanden ontstaan staande golven (de kaart noemt de frequenties, meestal tussen 300 en 1500 Hz). Die komen door de dunne conus naar buiten: een holle "doos"-klank, nasale stemmen, pieken en dips in het middengebied. De bas klinkt dikker maar minder strak (hogere Qtc).
+- **Goed gevuld.** De staande golven zijn grotendeels weg, de kast werkt 5 tot 15 % groter dan hij is, en de bas wordt strakker.
+- **Te veel vulling.** Dicht gepakt materiaal remt de lucht. In een gesloten kast kost dat tot ongeveer 1 dB laag rond de resonantie en wordt de bas droog. In een basreflexkast dempt het de poort: de afstemming vervaagt en je verliest 1 tot 2 dB rond fb. De controle waarschuwt hiervoor, met een knop die de vulling terugbrengt tot de wanden.
+
+Klap in het veld "Wat doet te weinig of te veel vulling met het geluid?" open voor de uitleg per situatie. Je hoort het verschil in stap 7 en meet het in M1: minder vulling geeft een hogere, smallere impedantiepiek en meer rimpel in het middengebied.
+
 **Waar je op let in de controles**
 
 - **Conusuitslag**: de woofer mag bij je maximale niveau niet verder bewegen dan zijn Xmax. Rood? Kies een kleinere kast, zet basbeheer aan (stap 1) of accepteer een lager maximaal niveau.
 - **Luchtsnelheid in de poort**: onder 17 m/s is stil, boven 30 m/s hoor je de poort blazen. Rood? Grotere poortdiameter (en dus langer).
 - **Pijpresonantie**: een lange poort fluit op een eigen toon. De controle zegt of die in het bereik van de woofer valt.
 - **Drivers overlappen** of **buiten het front**: de knop schuift ze naar een vrije plek.
+- **Geen demping in de kast**: zet vulling op normaal (gesloten) of licht (basreflex); de knop doet het voor je.
 - **Montagevlak buiten de kast**: een driver die achter de achterwand zou zitten. Sleep hem in het zijaanzicht terug.
 - **Kast voldoet niet**: het netto volume past niet in de buitenmaten. De knop maakt de kast dieper.
 
@@ -328,6 +341,13 @@ Nu hoor je je ontwerp, op de koptelefoon, in jouw kamer.
 
 ![Het bord zoals gebouwd: onderdelen op een plankje, rode signaaldraden, grijze retour.](img/board.webp)
 *Het bord zoals gebouwd: onderdelen op een plankje, rode signaaldraden, grijze retour.*
+
+**3D-geprint bord.** **Bord exporteren (STL)** maakt een printbare plaat waarop alle onderdelen vanzelf op hun plek vallen: een ronde kraag om elke spoel (met een gat in het midden voor een kabelbinder of bout), twee zadels aan de uiteinden van elke condensator en weerstand, gaten van 4 mm voor de luidsprekerklemmen bij elke driver en bij de versterkeringang, en vier montagegaten van 4,5 mm in de hoeken. Kies de plaatdikte (3–8 mm, standaard 4). Onder de knop staat de maat van de plaat; past hij niet op je printbed, dan sleep je onderdelen dichter bij elkaar of print je in delen. Printtip: PETG of PLA, laaghoogte 0,2 mm, geen support, plaat plat op het bed. De maten van de houders zijn geschat uit de onderdeelwaarden: meet je echte onderdelen en sleep ze op het bord op hun plek voordat je exporteert. Een gat dat buiten de plaat of over een ander gat zou vallen, wordt weggelaten en bij de knop genoemd.
+
+**Zaagplan.** Onderaan stap 3, Kast, staat de kaart **Zaagplan**. Kies je plaatmateriaal (MDF of multiplex in gangbare maten, of een eigen plaatmaat), vul de **zaagsnede** van je zaagblad in (meestal 3 mm) en hoeveel je van de fabrieksranden afkort. LobeWise maakt de panelenlijst (front, achterwand, zijwanden, boven en onder, met stompe verbindingen) en legt ze in rijen op zo weinig mogelijk platen, met de zaagsnede tussen elk stuk. Je ziet hoeveel platen je nodig hebt en hoeveel afval er is. **Afdrukken** geeft per plaat een tekening met alle maten en de rode lijnen die je eerst over de hele lengte zaagt; daarna kort je per rij de stukken af. Dat is niet de allerkrapste indeling, maar wel een die je met een tafel- of invalzaag echt zo kunt zagen. Wil je een dubbel front of verstijvingen, vink dat aan; past een paneel nergens op de plaat, dan zegt de kaart dat.
+
+![Het zaagplan van een paar Classix III-kasten op één plaat MDF: rijen met de rode zaaglijnen, elk stuk met naam en maat.](img/cutplan.webp)
+*Het zaagplan van een paar Classix III-kasten op één plaat MDF: rijen met de rode zaaglijnen, elk stuk met naam en maat.*
 
 **Onderdelen kopen.** Klik op een onderdeel in het schema voor de waarde en de belasting. Koop condensatoren en spoelen uit de E-reeks die het dichtst bij de waarde liggen; de optimizer in stap M4 rondt later ook zo af. Let op de belasting: een weerstand die 8 W moet verdragen, koop je als 10 W.
 
