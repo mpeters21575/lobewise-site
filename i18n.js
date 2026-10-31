@@ -175,7 +175,7 @@ window.LOBEWISE_I18N = {
       'Pro is een maand- of jaarabonnement dat je altijd kunt opzeggen. Betalen loopt via Stripe, dat ook facturen en opzeggen regelt. Je projecten blijven van jou en blijven exporteerbaar, ook na opzeggen. Betalen opent samen met Pro; de wachtlijst is gratis.',
     'faq.7.q': 'Geen account, hoe ontgrendelt Pro dan?',
     'faq.7.a':
-      'Met een licentiesleutel. Na betaling krijg je per e-mail een ondertekende sleutel, geldig voor de betaalde periode. Plak hem één keer in LobeWise: de app controleert de handtekening op je eigen apparaat, zonder een server te raadplegen, en zet Pro aan. Bij elke verlenging komt er automatisch een nieuwe sleutel. Er is geen wachtwoord en niets om op in te loggen; de sleutel werkt ook offline en op je andere apparaten.',
+      'Met een licentiesleutel. Na betaling krijg je per e-mail een ondertekende sleutel, geldig voor de betaalde periode. Plak hem één keer in LobeWise (ⓘ Over LobeWise → Pro ontgrendelen): de app controleert de handtekening op je eigen apparaat, zonder een server te raadplegen, en zet Pro aan. Bij elke verlenging komt er automatisch een nieuwe sleutel. Er is geen wachtwoord en niets om op in te loggen; de sleutel werkt ook offline en op je andere apparaten.',
     'faq.8.q': 'Wat gebeurt er als ik opzeg?',
     'faq.8.a':
       'Pro blijft actief tot het einde van de betaalde periode, daarna gaan de Pro-stappen weer op slot. Alles wat je maakte blijft: projecten, metingen en varianten staan op je apparaat en blijven exporteerbaar, en de ontwerpstappen blijven gratis werken. Omdat er geen cloud is, is er niets te verwijderen en niets te synchroniseren.',
