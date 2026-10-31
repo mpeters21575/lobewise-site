@@ -66,6 +66,10 @@
   article p:has(> img) { margin: 22px 0 4px; }
   article img { display: block; max-width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); background: var(--shot-bg); box-shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.6); }
   article p:has(> img) + p { margin: 0 0 24px; font-size: 14px; color: var(--muted); }
+  .brand { display: flex; align-items: center; gap: 10px; margin: 0 0 18px; font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; color: var(--fg); }
+  .brand img { border-radius: 8px; }
+  .brand em { font-style: normal; color: var(--accent); }
+  .brand small { font-family: var(--font-body); font-weight: 400; font-size: 0.8rem; color: var(--muted); margin-left: 6px; letter-spacing: 0.06em; text-transform: uppercase; }
   .lead { font-size: 1.15rem; color: var(--muted); }
   .meta { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 28px; font-size: 13px; color: var(--muted); }
   .meta span { border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; background: var(--panel); }
@@ -190,7 +194,20 @@ Hier maak je de kast en zet je de drivers op hun plek. Je ziet direct wat dat do
 
 1. Vul **Breedte**, **Hoogte** en **Diepte** in. Een smal front (iets breder dan de woofer plus 2 cm per kant) klinkt het meest ruimtelijk.
 2. Vul de **Wanddikte** in (18 of 19 mm bij MDF of multiplex). LobeWise controleert of het netto volume echt in de kast past.
-3. Sleep de drivers op het front. Houd ze op één verticale lijn. De tweeter komt op oorhoogte, meestal 85 tot 100 cm boven de vloer als de kast op een standaard staat.
+3. Zet de drivers op hun plek. In het **Vooraanzicht** sleep je ze over het front (x en y); in het **Zijaanzicht** sleep je ze in de diepte (z). Klik een driver aan en vul onder **Positie van …** de getallen exact in, op de millimeter. Met de pijltjestoetsen verschuif je 1 mm, met Shift 10 mm. Houd de drivers op één verticale lijn; de tweeter komt op oorhoogte, meestal 85 tot 100 cm boven de vloer als de kast op een standaard staat.
+
+![Voor- en zijaanzicht van de kast met sleepbare drivers en de positievelden eronder.](img/placement.webp)
+*Voor- en zijaanzicht van de kast met sleepbare drivers en de positievelden eronder.*
+
+**Diepte: montagevlak en akoestisch centrum**
+
+- **Montagevlak t.o.v. front** is waar de driver in het hout zit: 0 is gelijk met het front, negatief is teruggelegd (een trapbaffle of een verzonken tweeter).
+- **Akoestisch centrum achter montagevlak** is waar het geluid vandaan lijkt te komen: bij een dome vrijwel op de flens (0 mm), bij een conus enkele centimeters erachter, rond de spreekspoel. De knop **Schatten** vult een redelijke waarde in, of de waarde uit de kop van het fabrieksbestand als die er is.
+- Verplaats je het montagevlak, dan schuift het akoestisch centrum mee; de diepte erachter blijft gelijk.
+
+**Waarom dit de klank verandert.** Een woofer en een tweeter die samen één toon maken rond de scheidingsfrequentie, moeten die op hetzelfde moment bij je oor laten aankomen. Staat het akoestisch centrum van de woofer 3 cm verder naar achteren dan dat van de tweeter, dan komt zijn geluid later aan en vult het rond de scheiding niet goed aan: een dip of juist een bult, en een andere richtwerking omhoog en omlaag. Door de tweeter een paar centimeter terug te leggen (trapbaffle) of de scheiding anders te kiezen, breng je ze in lijn. Je ziet het effect direct in de som in stap 4 en in het luistervenster in stap 5.
+
+Let op: bij fabrieksbestanden met een gedeelde tijdreferentie zit de diepte al in de meting en telt hij alleen buiten de as mee. Bij een model uit Thiele/Small-waarden of minimum-fase-data rekent LobeWise de diepte ook op de as mee. Het veld zegt welk van de twee geldt.
 
 **Kamers**
 
@@ -206,6 +223,7 @@ Elke woofer heeft een kamer. Klik erop en kies:
 - **Luchtsnelheid in de poort**: onder 17 m/s is stil, boven 30 m/s hoor je de poort blazen. Rood? Grotere poortdiameter (en dus langer).
 - **Pijpresonantie**: een lange poort fluit op een eigen toon. De controle zegt of die in het bereik van de woofer valt.
 - **Drivers overlappen** of **buiten het front**: de knop schuift ze naar een vrije plek.
+- **Montagevlak buiten de kast**: een driver die achter de achterwand zou zitten. Sleep hem in het zijaanzicht terug.
 - **Kast voldoet niet**: het netto volume past niet in de buitenmaten. De knop maakt de kast dieper.
 
 > **Door als:** Kast groen is, of oranje met alleen waarschuwingen die je begrijpt. Rood betekent: dit bouw je zo niet.
@@ -478,6 +496,10 @@ Je bent klaar als dit allemaal waar is:
     }
     for (const img of el.querySelectorAll('img')) img.loading = 'lazy'
     const h1 = el.querySelector('h1')
+    const brand = document.createElement('p')
+    brand.className = 'brand'
+    brand.innerHTML = '<img src="img/favicon.png" alt="" width="40" height="40"><span>Lobe<em>Wise</em></span><small>Audiophile Simulation Suite</small>'
+    h1.before(brand)
     const meta = document.createElement('p')
     meta.className = 'meta'
     meta.innerHTML = '<span><b>A</b> ontwerpen · een avond</span><span><b>B</b> bouwen · een weekend</span><span><b>C</b> meten en tunen · een avond</span><span>versie 0.1 · oktober 2026</span>'
