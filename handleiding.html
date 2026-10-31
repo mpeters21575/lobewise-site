@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>LobeWise Handleiding — van idee tot audiofiele luidspreker</title>
+<meta name="description" content="Stap voor stap een luidspreker ontwerpen, bouwen, meten en afstemmen in LobeWise, voor beginners." />
+<link rel="icon" href="img/favicon.png" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;650;700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400&display=swap">
+
+<style>
+  /* Layout: one reading column (≈68ch) with a sticky chapter list on the left at desktop width. */
+  :root {
+    --bg: #f6f4ef;
+    --panel: #ffffff;
+    --fg: #1d2127;
+    --muted: #5f6977;
+    --line: #dcd7cc;
+    --accent: #b86f3a;
+    --accent-soft: rgba(184, 111, 58, 0.12);
+    --teal: #1d7f99;
+    --teal-soft: rgba(29, 127, 153, 0.12);
+    --pass: #1f8a4c;
+    --warn: #b7791f;
+    --fail: #c0392b;
+    --code: #eeebe4;
+    --font-display: 'Bricolage Grotesque', 'Avenir Next', 'Segoe UI', system-ui, sans-serif;
+    --font-body: 'Source Sans 3', 'Helvetica Neue', Arial, system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) {
+      --bg: #0f1217; --panel: #171b22; --fg: #e6e9ef; --muted: #99a3b3; --line: #2a303b;
+      --accent: #e2a062; --accent-soft: rgba(226, 160, 98, 0.16); --teal: #5cc8e0; --teal-soft: rgba(92, 200, 224, 0.14);
+      --pass: #4ade80; --warn: #ffb454; --fail: #f87171; --code: #1e232c; color-scheme: dark;
+    }
+  }
+  :root[data-theme='dark'] {
+    --bg: #0f1217; --panel: #171b22; --fg: #e6e9ef; --muted: #99a3b3; --line: #2a303b;
+    --accent: #e2a062; --accent-soft: rgba(226, 160, 98, 0.16); --teal: #5cc8e0; --teal-soft: rgba(92, 200, 224, 0.14);
+    --pass: #4ade80; --warn: #ffb454; --fail: #f87171; --code: #1e232c; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 17px; line-height: 1.6; }
+  .page { display: grid; grid-template-columns: 1fr; gap: 32px; max-width: 1120px; margin: 0 auto;
+    padding-block: 32px 80px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  @media (min-width: 980px) { .page { grid-template-columns: 240px minmax(0, 1fr); } }
+  nav.toc { display: none; }
+  @media (min-width: 980px) {
+    nav.toc { display: block; position: sticky; top: 24px; align-self: start; max-height: calc(100vh - 48px); overflow: auto; font-size: 14px; padding-right: 8px; }
+  }
+  nav.toc h2 { font-family: var(--font-display); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+  nav.toc a { display: block; color: var(--muted); text-decoration: none; padding: 5px 0 5px 12px; border-left: 2px solid var(--line); }
+  nav.toc a.sub { padding-left: 24px; font-size: 13px; }
+  nav.toc a:hover, nav.toc a.is-active { color: var(--fg); border-left-color: var(--accent); }
+  article { min-width: 0; max-width: 70ch; }
+  article h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 4.5vw, 2.9rem); line-height: 1.1; letter-spacing: -0.015em; margin: 0 0 20px; text-wrap: balance; }
+  article h2 { font-family: var(--font-display); font-weight: 650; font-size: 1.7rem; line-height: 1.2; margin: 56px 0 14px; padding-top: 18px; border-top: 1px solid var(--line); text-wrap: balance; }
+  article h3 { font-family: var(--font-display); font-weight: 650; font-size: 1.25rem; margin: 36px 0 10px; text-wrap: balance; }
+  article h3::before { content: ''; display: inline-block; width: 9px; height: 9px; background: var(--accent); border-radius: 2px; margin-right: 10px; vertical-align: 2px; }
+  article p, article li { color: var(--fg); }
+  article a { color: var(--teal); }
+  article hr { border: 0; border-top: 1px solid var(--line); margin: 40px 0; }
+  article strong { font-weight: 650; }
+  article ul, article ol { padding-left: 1.3em; }
+  article li { margin: 4px 0; }
+  article li::marker { color: var(--accent); font-weight: 650; }
+  article code { font-family: var(--font-mono); font-size: 0.88em; background: var(--code); padding: 1px 5px; border-radius: 4px; }
+  article blockquote { margin: 22px 0; padding: 14px 18px; border-left: 4px solid var(--pass); background: var(--panel); border-radius: 0 10px 10px 0; box-shadow: 0 1px 0 var(--line); }
+  article blockquote p { margin: 0; }
+  article blockquote strong:first-child { color: var(--pass); }
+  article table { border-collapse: collapse; width: 100%; font-size: 15px; display: block; overflow-x: auto; }
+  article th, article td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  article th { font-family: var(--font-display); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  article td:first-child { white-space: nowrap; font-weight: 650; }
+  .lead { font-size: 1.15rem; color: var(--muted); }
+  .meta { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 28px; font-size: 13px; color: var(--muted); }
+  .meta span { border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; background: var(--panel); }
+  .meta span b { color: var(--accent); font-weight: 650; }
+  .part { font-family: var(--font-display); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 0 0 -8px; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <nav class="toc" aria-label="Hoofdstukken"><h2>Inhoud</h2><div id="toc"></div></nav>
+  <article id="doc"><p class="lead">Even geduld, de handleiding wordt geladen…</p></article>
+</div>
+<script type="text/markdown" id="md"># LobeWise voor beginners: van idee tot audiofiele luidspreker
+
+Deze handleiding neemt je stap voor stap mee door LobeWise: van een leeg project tot een luidspreker die je hebt ontworpen, gebouwd, gemeten en afgestemd. Je hoeft geen elektronica of akoestiek te kennen. Elke stap zegt wat je doet, waar je op let en wanneer je door mag.
+
+**Hoeveel tijd kost het?** Ontwerpen (deel A) ongeveer een avond. Bouwen (deel B) een weekend, afhankelijk van je kast. Meten en afstemmen (deel C) nog een avond.
+
+**Wat heb je nodig?**
+
+- Een computer met Chrome, Edge, Safari of Firefox. LobeWise draait in de browser, er is niets te installeren en je hebt geen account nodig.
+- Een idee van wat je wilt bouwen: bijvoorbeeld een tweeweg boekenplankluidspreker.
+- De meetbestanden van je drivers (FRD en ZMA). De fabrikant zet die meestal op zijn site. Heb je ze niet, dan kun je ook met de Thiele/Small-getallen uit de datasheet werken.
+- Voor deel C: een meetmicrofoon (USB of met een kalibratiebestand) en een koptelefoon.
+
+**Oefen eerst met een voorbeeld.** In stap 2 staat de knop **Voorbeeld laden: Classix III**. Dat is een gepubliceerd ontwerp van Paul Carmody met echte Dayton-drivers. Loop deze handleiding één keer door met dat voorbeeld. Daarna doe je hetzelfde met je eigen drivers.
+
+---
+
+## Zo leest LobeWise
+
+**De stappenbalk.** Bovenaan staan de stappen: 1 Doelen tot en met 7 Luisteren voor het ontwerpen, en M1 tot en met M6 voor meten en afstemmen. Je mag vrij springen, maar de volgorde is niet toevallig: elke stap gebruikt wat je ervoor hebt ingevuld.
+
+**De kleuren.** Achter elke stap staat een status:
+
+| Teken | Betekenis | Wat je doet |
+|---|---|---|
+| ✓ groen | Voldoet | Niets. Door naar de volgende stap. |
+| ▲ oranje | Waarschuwing | Lees de uitleg. Vaak is er een knop die het oplost. |
+| ✕ rood | Voldoet niet | Dit moet je oplossen voordat je bouwt. |
+| ○ grijs | Open of onvoldoende gegevens | Er ontbreekt nog iets, de uitleg zegt wat. |
+| ◇ | Buiten model | LobeWise kan dit niet berekenen met de data die je hebt. Niet erg, wel goed om te weten. |
+| Bekend | Je hebt een waarschuwing als "bekend" gemarkeerd | Hij telt niet meer mee. "Weer melden" zet hem terug. |
+
+**Elke controle legt zichzelf uit.** Onder een controle staat de grens, de methode en wat je kunt doen. Bij bijna elke waarschuwing staat een knop **Automatisch oplossen: …**. Die doet één wijziging, en meldt wat er elders in het project door verandert.
+
+**Alles oplossen.** De knop rechtsboven probeert alle oplosknoppen tegelijk, controleert na elke stap het hele project opnieuw en houdt alleen wat het totaal beter maakt. Wijzigingen die je Doelen zouden veranderen, past hij niet toe; die krijg je als keuze met een knop **Toch toepassen**.
+
+**Ongedaan maken.** Alles wat de app voor je doet, is één stap Ongedaan maken. Probeer dus gerust.
+
+**Opslaan hoeft niet.** Je project wordt automatisch in de browser bewaard. Met **Exporteren** maak je een bestand voor jezelf of een ander apparaat.
+
+---
+
+## Deel A: ontwerpen
+
+### Stap 1: Doelen
+
+Hier vertel je LobeWise waar de luidspreker komt en wat hij moet kunnen. Deze getallen worden de grenzen van alle controles.
+
+**Luidspreker en plaatsing**
+
+- **Type**: boekenplank, vloerstaander, center, surround of subwoofer.
+- **Maximale diepte**: hoe diep de kast mag zijn op de plek waar hij komt.
+- **Afstand tot voorwand**: de afstand van de achterkant van de kast tot de muur. Dicht bij de muur geeft meer bas en meer kans op een dip rond 100 tot 300 Hz.
+- **Luisterafstand**: hoe ver je zit. Dit is gekoppeld aan stap 6, Kamer: verander je het hier, dan schuift de luisterplek daar mee.
+
+**Niveau en basbeheer**
+
+- **Maximaal niveau**: hoe hard het op je luisterplek moet kunnen. 95 dB is luid voor een huiskamer. Hoe hoger, hoe strenger de controles op uitslag en poortsnelheid.
+- **Basbeheer**: zet dit aan als je een subwoofer hebt die het laag overneemt (bijvoorbeeld onder 80 Hz). Een kleine luidspreker hoeft dan geen diep laag te maken, en veel waarschuwingen in stap 3 verdwijnen.
+
+**Versterker**
+
+Kies je versterker uit de lijst of vul het vermogen, de uitgangsimpedantie en de minimale belasting in. De minimale belasting bepaalt hoe laag de impedantie van je crossover mag worden.
+
+**Signaal voor belastingscontrole.** Laat dit op *Roze ruis* staan. Dat is hoe muziek gemiddeld belast. *Sinus* is de strengste grens en alleen nodig als je zekerheid wilt voor elk onderdeel.
+
+> **Door als:** je alles hebt ingevuld. Deze stap heeft geen controles die rood kunnen worden.
+
+### Stap 2: Drivers
+
+Hier komen de drivers in het project, met hun meetgegevens en hun plek op het front.
+
+**Driver toevoegen**
+
+1. Klik **+ Driver toevoegen**. De driver krijgt vanzelf een vrije plek op het front.
+2. Typ in **Zoeken in bibliotheek** een merk of type (bijvoorbeeld "SB17" of "Dayton"). Kies een driver uit de lijst. De naam, impedantie, Thiele/Small-waarden en kastadvies worden ingevuld.
+3. Sleep de **FRD** (frequentierespons) en **ZMA** (impedantie) van de fabrikant in het vak, of kies ze met de knoppen. Heb je geen bestanden, sla dit dan over: LobeWise rekent dan met een model uit de Thiele/Small-waarden. Dat is goed genoeg voor de kast, maar minder precies voor de crossover.
+
+**Drie vragen bij elk bestand**
+
+- **Waar is deze ZMA gemeten?** *Losse driver (vrije lucht)* voor een fabrieksmeting; *In de kast* als je hem zelf in je kast hebt gemeten. LobeWise rekent de kast er dan bij of juist niet.
+- **Zit de baffle en de kast al in de FRD?** Een fabrieksmeting is meestal op een grote standaardbaffle gemeten, zonder jouw kast. Bij bekende fabrikanten (Dayton, SEAS, …) herkent LobeWise dit aan de kop van het bestand en zet het goed.
+- **Tijdreferentie**: hebben alle FRD's dezelfde meetvertraging? Bij losse fabrieksbestanden weet je dat niet. Dan krijg je een waarschuwing met een knop die het probeert op te lossen (minimum-fase). Beter is: meet de drivers zelf vanaf één microfoonpositie (stap M1), dan is deze vraag weg.
+
+**Positie op het front.** Zet de tweeter boven en de woofer eronder, met de middens boven elkaar op één lijn. De exacte plek pas je in stap 3 aan door te slepen.
+
+**Polariteit.** Laat die hier gewoon staan. Omkeren doe je in de crossover, als de simulatie laat zien dat het nodig is.
+
+> **Door als:** elke driver een naam, impedantie en óf bestanden óf Thiele/Small-waarden heeft. De controle "Driverdata compleet" is dan groen.
+
+### Stap 3: Kast
+
+Hier maak je de kast en zet je de drivers op hun plek. Je ziet direct wat dat doet met het laag, de uitslag en de poort.
+
+**Front en kast**
+
+1. Vul **Breedte**, **Hoogte** en **Diepte** in. Een smal front (iets breder dan de woofer plus 2 cm per kant) klinkt het meest ruimtelijk.
+2. Vul de **Wanddikte** in (18 of 19 mm bij MDF of multiplex). LobeWise controleert of het netto volume echt in de kast past.
+3. Sleep de drivers op het front. Houd ze op één verticale lijn. De tweeter komt op oorhoogte, meestal 85 tot 100 cm boven de vloer als de kast op een standaard staat.
+
+**Kamers**
+
+Elke woofer heeft een kamer. Klik erop en kies:
+
+- **Type**: *Gesloten* is het eenvoudigst en vergeeft het meest. *Basreflex* geeft meer laag, maar vraagt een goede poort. *Aperiodisch* zit ertussen. De andere typen zijn voor gevorderden.
+- **Netto volume**: begin met het kastadvies van de driver. Groter geeft dieper maar slapper laag; kleiner geeft strakker maar minder diep laag.
+- **Poort** (bij basreflex): kies een diameter van minstens 5 cm voor een 6,5-inch woofer en klik **Afstemmen op … Hz**: LobeWise berekent de lengte. Mik op een afstemming rond de fs van de woofer of iets eronder.
+
+**Waar je op let in de controles**
+
+- **Conusuitslag**: de woofer mag bij je maximale niveau niet verder bewegen dan zijn Xmax. Rood? Kies een kleinere kast, zet basbeheer aan (stap 1) of accepteer een lager maximaal niveau.
+- **Luchtsnelheid in de poort**: onder 17 m/s is stil, boven 30 m/s hoor je de poort blazen. Rood? Grotere poortdiameter (en dus langer).
+- **Pijpresonantie**: een lange poort fluit op een eigen toon. De controle zegt of die in het bereik van de woofer valt.
+- **Drivers overlappen** of **buiten het front**: de knop schuift ze naar een vrije plek.
+- **Kast voldoet niet**: het netto volume past niet in de buitenmaten. De knop maakt de kast dieper.
+
+> **Door als:** Kast groen is, of oranje met alleen waarschuwingen die je begrijpt. Rood betekent: dit bouw je zo niet.
+
+### Stap 4: Crossover
+
+Het filter verdeelt het signaal over de drivers. Dit is de stap waar de klank wordt bepaald.
+
+**Begin met een template**
+
+Open de kaart **Template (startpunt)** en kies een tweeweg LR4 (24 dB per octaaf) of LR2 (12 dB per octaaf) rond de frequentie die bij je drivers past. Vuistregel: minstens twee keer de resonantiefrequentie van de tweeter, en niet hoger dan waar de woofer begint te bundelen (ongeveer 340 ÷ zijn diameter in meters, in Hz: een 16 cm woofer tot ongeveer 2100 Hz).
+
+**Het schema lezen**
+
+- **AMP1** is de versterker. Links is plus, de massa staat eronder.
+- Een onderdeel **in serie** staat in de lijn naar de driver. Een onderdeel **naar massa** (met het massasymbool) is een shunt.
+- Klik op een onderdeel om de waarde, de verliezen (DCR van een spoel, ESR van een condensator) en de belasting te zien.
+- Klik op een driver om hem **om te polen** (−). Bij een LR2-filter is dat voor de tweeter bijna altijd nodig.
+
+**De grafieken**
+
+- **Akoestische respons**: de som (dik) en de drivers apart. Mik op een vlakke som; een lichte daling naar hoge tonen is normaal en klinkt prettig.
+- **Impedantie**: de laagste waarde mag niet onder de minimale belasting van je versterker komen.
+- **Groepsvertraging**: hoe constanter, hoe beter. Bulten rond de scheidingsfrequentie wijzen op een fasefout.
+
+**De drie controles die ertoe doen**
+
+1. **Laagste impedantie**: groen als hij boven 80 % van de minimale belasting blijft.
+2. **EPDR**: hoe zwaar de versterker het echt krijgt, inclusief fasehoek. De knop *Onderdelen aanpassen voor een lichtere belasting* lost dit vaak op zonder dat de klank verandert.
+3. **Geen signaal**: een driver krijgt niets (vergeten draad, 0 µF). De uitleg zegt welke.
+
+**Tip.** Druk op **Alles oplossen** als je het schema hebt staan. Kijk daarna in de lijst wat er gedaan is. Snap je iets niet, dan maak je het ongedaan en lees je de uitleg bij die controle.
+
+**Schema ordenen** tekent het schema netjes opnieuw. **Bord (zoals gebouwd)** laat zien hoe het eruitziet op een plankje: dat komt terug in deel B.
+
+> **Door als:** Crossover groen is ("Voldoet binnen model"). Oranje op EPDR mag, als je versterker ruim bemeten is.
+
+### Stap 5: Verificatie
+
+Hier staat alles bij elkaar, plus de controles op richtwerking die de andere stappen niet hebben.
+
+**Vlakheid luistervenster.** Dit is de belangrijkste maat voor hoe neutraal de luidspreker klinkt, ook iets buiten de as. Groen onder 3 dB piek-piek. De knop *Filter optimaliseren op de doelcurve* laat de optimizer je onderdeelwaarden bijstellen binnen je eigen schema.
+
+**Horizontale lobing op 30°.** Twee drivers die hetzelfde geluid maken, doven elkaar schuin uit. Zet drivers boven elkaar en dicht bij elkaar. De knop schuift ze naar elkaar toe.
+
+**Richtwerking en polars.** De grafieken Horizontaal 0 tot 60° en Verticaal ±10/20° laten zien hoe de klank verandert als je opzij of op en neer beweegt. Mooi is: dezelfde vorm als op de as, alleen zachter.
+
+**Afstand tot de tweeterresonantie.** De scheidingsfrequentie moet minstens drie keer zo hoog zijn als de fs van de tweeter. Anders vervormt hij bij luid spelen.
+
+> **Door als:** Verificatie groen of oranje is en je bij elke oranje weet waarom. Blijft het luistervenster boven 3 dB, probeer dan een andere scheidingsfrequentie of een andere steilheid in stap 4.
+
+### Stap 6: Kamer
+
+Een luidspreker klinkt in een kamer anders dan in de simulatie. Deze stap laat zien wat jouw kamer doet.
+
+1. Vul **Breedte**, **Diepte** en **Hoogte** van de kamer in en kies de **Inrichting** (kaal, gemeubileerd, gedempt).
+2. Sleep in het **Bovenaanzicht** de luidsprekers en de luisterplek op hun plek. Zet **Reflecties** op *1e orde* om alleen de zes directe reflecties te zien.
+3. Kies per vlak het **Materiaal**: raam, gipsplaat, houten vloer, tapijt.
+
+**Waar je op let**
+
+- **Voorwand-reflectie (SBIR)**: een dip rond 100 tot 300 Hz door de muur achter de luidspreker. Oplossing: dichter bij de muur (onder 30 cm) of juist verder weg (meer dan 1 m).
+- **Kamermodi**: staande golven onder de Schroeder-frequentie. Een andere luisterplek helpt vaak meer dan een andere luidspreker.
+- **Vloer- en plafondreflectie**: hangt af van de hoogte van de tweeter en je oren.
+
+Fixes die je Doelen veranderen (zoals de luisterafstand) past Alles oplossen niet vanzelf toe. Je ziet ze in de lijst met een knop **Toch toepassen**.
+
+> **Door als:** je begrijpt welke dips van de kamer komen en welke van de luidspreker. Oranje is hier normaal; een kamer is nooit perfect.
+
+### Stap 7: Luisteren
+
+Nu hoor je je ontwerp, op de koptelefoon, in jouw kamer.
+
+1. **Eerst: veilig luisteren.** Zet het volume van je computer laag, zet je koptelefoon op, vink het vakje aan en klik **Audio voorbereiden**.
+2. Kies een **Bron**: roze ruis of een eigen muziekbestand (WAV, MP3, FLAC). Klik **Afspelen**.
+3. Onder **Kamer en paden** zet je wanden aan en uit. Zo hoor je wat de zijwanden of de vloer doen.
+4. Onder **Vergelijken (A/B)** zet je twee varianten naast elkaar, bijvoorbeeld met en zonder kamer, of twee crossovers. Druk op A of B tijdens het spelen.
+5. De **Geleide luistertests** stellen je een vraag ("zet de zijwanden uit, wat verandert er?") en leren je horen waar je naar luistert.
+
+> **Klaar met ontwerpen als:** de som vlak is, de impedantie veilig, het luistervenster onder 3 dB, en je het ontwerp prettig vindt klinken. Dan ga je bouwen.
+
+---
+
+## Deel B: bouwen
+
+**Het bord.** Ga naar stap 4 en kies **Bord (zoals gebouwd)**. Je ziet de onderdelen op een plankje, met de draden van de versterker (rood) en terug (grijs). Kruisende draden zijn alleen verbonden bij een stip. De maten zijn geschat; meet je eigen onderdelen voordat je boort. **Bord exporteren (SVG, 1:1 mm)** geeft een sjabloon om af te drukken.
+
+**Onderdelen kopen.** Klik op een onderdeel in het schema voor de waarde en de belasting. Koop condensatoren en spoelen uit de E-reeks die het dichtst bij de waarde liggen; de optimizer in stap M4 rondt later ook zo af. Let op de belasting: een weerstand die 8 W moet verdragen, koop je als 10 W.
+
+**Exporteren.** In stap M6, kaart **Exporteren**, staat het bouwpakket: een stuklijst (CSV), een printbaar bouwblad, het schema als SVG en een .crover-bestand dat je in Crover kunt openen.
+
+**Bouwstatus.** In stap M6 houdt elke variant zijn status bij: Concept, Gesimuleerd, Componenten gekozen, Gebouwd, Gemeten. Zet hem op *Gebouwd* als de kast dicht is. Dat voorkomt dat je later een voorstel verwart met wat er echt in zit.
+
+**Veilig bouwen.** Sluit de versterker pas aan als alles vastzit en gecontroleerd is. Meet met een multimeter of er geen kortsluiting tussen plus en min zit voordat je de eerste toon speelt.
+
+---
+
+## Deel C: meten en afstemmen
+
+### Stap M1: Meten
+
+Hier meet je wat je hebt gebouwd. LobeWise stuurt de microfoon nooit naar de luidsprekers, en vraagt alleen om toegang als jij op een knop drukt.
+
+**Voorbereiden**
+
+1. Sluit de meetmicrofoon aan. Kies hem onder **Microfoon** en laad het **Kalibratiebestand van de microfoon** als je er een hebt.
+2. Zet de luidspreker op zijn plek en de microfoon op oorhoogte, op 1 meter recht voor de tweeter (voor een meting van de luidspreker zelf) of op de luisterplek (voor een meting mét kamer).
+3. Vul de **Afstand tot luidspreker** in. Zet het **Gating-venster** op 0 als je de kamer wilt meenemen, of laat LobeWise een venster kiezen voor een meting zonder kamer.
+
+**Zelf meten**
+
+1. Klik **Zelf meten**. Eerst klinkt een zacht testsignaal om het kanaal te bevestigen. Hoor je het uit de juiste luidspreker, klik dan door.
+2. Kies **Van**, **Tot** en **Duur** van de sweep. Begin met een laag **Niveau** en verhoog het tot de meter in het groen staat, zonder clipping.
+3. Zet **Herhalingen** op 2 of meer: LobeWise meet of de herhalingen gelijk zijn en waarschuwt bij ruis of beweging.
+4. Heb je een SPL-meter? Vul de waarde in bij **SPL-meter**; dan wordt de meting absoluut en weet je echt hoe hard het speelt.
+5. Bewaar de meting. Hij komt in **Metingen** met type en referentie.
+
+**Of importeer uit REW** met **REW-meting importeren**. Geef aan wat voor meting het is (luidspreker, luisterplek) en of hij gevensterd is.
+
+**Diagnose.** Onder **Diagnose** vergelijkt LobeWise de meting met de voorspelling en zegt waar een afwijking vandaan komt: de luidspreker, de ruimte, een meetartefact of te weinig data. Lees dit voordat je gaat corrigeren.
+
+> **Door als:** je een meting hebt die betrouwbaar is (herhalingen gelijk, geen clipping) en de diagnose geen meetfout meldt.
+
+### Stap M2: Digitaal tunen
+
+Hier maak je een correctie die je eerst digitaal uitprobeert.
+
+1. Kies onder **Actief** de **Meting** en klik **+ Nieuwe correctie**.
+2. Stel de **Doelcurve** in. Voor een huiskamer: een **Helling** van ongeveer −1 dB per octaaf (iets warmer dan recht), **Correctieband van** 30 tot 300 Hz voor alleen het laag, of tot 10 kHz voor de hele luidspreker. Zet **Natuurlijke roll-off** aan zodat de EQ geen bas probeert te maken die de luidspreker niet kan.
+3. Klik **Autotune**. LobeWise maakt een **Kandidaat** met parametrische filters, alleen snijdend (geen versterking), binnen de **Grenzen** die je ziet. Kijk in **Meting, doel en voorspelling** wat er verandert.
+4. Bevalt het, klik **Toepassen**. Zo niet, pas de grenzen aan en probeer opnieuw. Je kunt elk filter ook met de hand bijstellen.
+
+**Wat je niet moet doen.** Dips door kamermodi en SBIR met EQ opvullen: dat kost vermogen en uitslag, en op een andere plek in de kamer klinkt het slechter. Snij pieken weg, laat dips met rust.
+
+> **Door als:** de voorspelde respons binnen ongeveer 3 dB van je doelcurve ligt en de headroom-meter niet rood is.
+
+### Stap M3: Afspelen en A/B
+
+Hier luister je met je eigen muziek, door de echte luidsprekers, met en zonder correctie.
+
+1. Kies een **Muziekbestand** en zet **Volume** laag. Klik Afspelen.
+2. **DSP** aan en uit schakelt de correctie. De wissel is vloeiend, zonder klik.
+3. Onder **Correctie en A/B** vergelijk je twee varianten *niveaugelijk*: dan hoor je het verschil in klank, niet in luidheid. Luidere klinkt namelijk altijd beter.
+4. Let op de **clip- en headroommeter**. Rood betekent dat de correctie te veel versterkt; verlaag de **Preamp**.
+
+> **Door als:** je met zekerheid kunt zeggen welke variant je mooier vindt. Twijfel je, dan is het verschil te klein om voor te bouwen.
+
+### Stap M4: Passief herontwerpen
+
+De correctie die je digitaal mooi vond, zet LobeWise nu om in andere waarden voor de onderdelen in je crossover.
+
+1. Kies onder **Welke correcties horen bij de luidspreker?** alleen de filters die iets aan de luidspreker zelf corrigeren. Kamercorrecties laat je uit: die horen niet in een passief filter.
+2. Kies het **Doel**: de gekozen correcties, of direct de doelcurve van stap M2.
+3. Stel de **Grenzen** in: van 100 tot 16000 Hz, **Waarde mag veranderen tot** 2 × (of ÷), en een paar **Starts**. Onderdelen die je niet wilt veranderen, **Vergrendel** je.
+4. Klik op onderzoeken. Het **Voorstel** toont de nieuwe waarden, afgerond naar de E-reeks, met de respons en de EPDR vóór en na. Het komt in **Varianten** als *Passief voorstel, nog niet gebouwd*.
+5. Luister ernaar in stap M3 (voorbeluistering) voordat je onderdelen koopt.
+
+Staat er **Nog niet mogelijk**, dan ontbreekt er data (meestal een meting van de losse drivers in de kast, zie stap M1). De kaart **Wat ontbreekt** zegt wat.
+
+> **Door als:** het voorstel de doelcurve dichter benadert dan het origineel, de impedantie veilig blijft en je het voorbeluisterd hebt.
+
+### Stap M5 en M6: bouwen, bevestigen en controleren
+
+1. Koop de onderdelen uit het voorstel en meet ze met een LCR-meter als je die hebt. Vul onder **Gemonteerde onderdelen bevestigen** de echte waarden in. LobeWise rekent dan met wat er echt in zit.
+2. Zet de bouwstatus op *Gebouwd*.
+3. Meet opnieuw (stap M1) op precies dezelfde plek als de eerste meting.
+4. Onder **Controlemeting tegen de variant** vergelijkt LobeWise de gemeten verandering met de voorspelde. Komt het overeen, dan is je ontwerp af. Wijkt het af, dan zegt de diagnose waar je moet kijken.
+
+---
+
+## Deel D: wanneer is het audiofiel?
+
+Je bent klaar als dit allemaal waar is:
+
+- **Som op de as**: vlak binnen ±2 dB van 100 Hz tot 10 kHz, met een rustige, geleidelijke daling daarboven.
+- **Luistervenster**: onder 3 dB piek-piek. Dit zegt meer dan de curve op de as.
+- **Richtwerking**: de curves buiten de as hebben dezelfde vorm als op de as, zonder gat rond de scheidingsfrequentie.
+- **Impedantie**: de laagste waarde boven de minimale belasting van de versterker, EPDR groen of een bewust geaccepteerde oranje.
+- **Uitslag en poort**: groen bij je maximale niveau.
+- **Kamer**: je kent de dips van je kamer en hebt de opstelling erop aangepast, niet de luidspreker.
+- **Controlemeting**: de gemeten verandering komt overeen met de voorspelde.
+- **Je oren**: in een niveaugelijke A/B kies je steeds dezelfde variant.
+
+---
+
+## Veelgemaakte fouten
+
+- **Te veel bas willen uit een kleine kast.** Zet basbeheer aan of accepteer een hogere ondergrens. Een kleine luidspreker die niet te diep hoeft, klinkt strakker dan een die overvraagd wordt.
+- **Een rode controle wegklikken.** Rood is rood. Oranje mag je accepteren als je de uitleg snapt.
+- **De tweeter te laag scheiden.** Houd minstens drie keer zijn fs aan.
+- **Kamerdips met EQ opvullen.** Snij pieken, laat dips met rust, verplaats de luidspreker of de stoel.
+- **Vergelijken zonder niveaugelijkheid.** De luidere variant wint altijd. Gebruik de A/B van LobeWise.
+- **Fabrieksbestanden als één meting behandelen.** Losse bestanden hebben niet altijd dezelfde tijdreferentie. Twijfel je, meet dan zelf vanaf één microfoonpositie.
+- **De bordtekening blind volgen.** Meet je eigen onderdelen voordat je boort.
+
+---
+
+## Woordenlijst
+
+- **FRD / ZMA**: tekstbestanden met de frequentierespons (FRD) en de impedantie (ZMA) van een driver.
+- **Thiele/Small (T/S)**: de getallen op een datasheet (fs, Qts, Vas, …) waarmee je het laag van een driver in een kast kunt berekenen.
+- **fs**: resonantiefrequentie van een driver. Daaronder doet hij weinig meer.
+- **Xmax**: hoe ver de conus lineair kan bewegen.
+- **Basreflex / gesloten / aperiodisch**: kast met poort, kast zonder opening, of kast met een gedempte opening.
+- **Crossover / scheidingsfilter**: het netwerk van spoelen, condensatoren en weerstanden dat het signaal over de drivers verdeelt.
+- **LR2 / LR4**: Linkwitz-Riley-filters van 12 en 24 dB per octaaf. LR4 scheidt strakker, LR2 heeft minder onderdelen.
+- **Impedantie / Zmin**: de weerstand die de versterker "ziet", en de laagste waarde daarvan.
+- **EPDR**: de weerstand die een versterker voelt als je ook de fasehoek meerekent. Lager dan Zmin, en eerlijker.
+- **Luistervenster**: het gemiddelde van de respons recht vooruit en iets ernaast (±10° en ±30°), volgens CTA-2034.
+- **Lobing**: uitdoving schuin voor de luidspreker doordat twee drivers op verschillende afstand van je oor staan.
+- **Baffle-diffractie**: het effect van de randen van het front op de klank: een stap rond een paar honderd Hz en rimpels erboven.
+- **SBIR**: de dip door de reflectie van de muur achter de luidspreker.
+- **Kamermodi / Schroeder-frequentie**: staande golven in een kamer, en de frequentie waaronder ze het geluid bepalen.
+- **Gating / venster**: een deel van een meting afknippen zodat de kamerreflecties er niet in zitten.
+- **PEQ**: parametrische equalizer: een filter met frequentie, breedte (Q) en niveau.
+- **E-reeks**: de standaardwaarden waarin onderdelen te koop zijn (E12, E24).
+- **DCR / ESR**: de weerstand van een spoel (DCR) en van een condensator (ESR). Kleine verliezen die de klank meebepalen.
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script>
+  (() => {
+    const src = document.getElementById('md').textContent
+    const el = document.getElementById('doc')
+    marked.use({ mangle: false, headerIds: false })
+    el.innerHTML = marked.parse(src)
+    // Ids and the chapter list from the headings.
+    const slug = (t) => t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+    const toc = document.getElementById('toc')
+    const links = []
+    for (const h of el.querySelectorAll('h2, h3')) {
+      h.id = slug(h.textContent)
+      const a = document.createElement('a')
+      a.href = '#' + h.id
+      a.textContent = h.textContent.replace(/^Stap /, '')
+      if (h.tagName === 'H3') a.className = 'sub'
+      toc.append(a)
+      links.push([h, a])
+    }
+    // Facts under the title, from the two bold "Hoeveel tijd" / "Wat heb je nodig" paragraphs that follow it.
+    const h1 = el.querySelector('h1')
+    const meta = document.createElement('p')
+    meta.className = 'meta'
+    meta.innerHTML = '<span><b>A</b> ontwerpen · een avond</span><span><b>B</b> bouwen · een weekend</span><span><b>C</b> meten en tunen · een avond</span><span>versie 0.1 · oktober 2026</span>'
+    h1.after(meta)
+    el.querySelector('p:not(.meta)').classList.add('lead')
+    // Highlight the chapter in view.
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((es) => {
+        for (const e of es) if (e.isIntersecting) { links.forEach(([, a]) => a.classList.remove('is-active')); links.find(([h]) => h === e.target)?.[1].classList.add('is-active') }
+      }, { rootMargin: '-10% 0px -80% 0px' })
+      links.forEach(([h]) => io.observe(h))
+    }
+    if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView()
+  })()
+</script>
+</body>
+</html>

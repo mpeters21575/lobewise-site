@@ -188,6 +188,7 @@ window.LOBEWISE_I18N = {
     'cta.2': 'Pro-wachtlijst',
     'footer.tag': 'Audiophile Simulation Suite',
     'footer.contact': 'Contact',
+    'footer.guide': 'Handleiding voor beginners',
   },
   en: {
     'waitlist.ok': 'Your mail client is opening. Nothing happens? Mail us directly at ',
