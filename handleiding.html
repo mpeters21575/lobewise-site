@@ -469,6 +469,31 @@ Je bent klaar als dit allemaal waar is:
 
 ---
 
+## Waar LobeWise ophoudt
+
+LobeWise is gevalideerd op gepubliceerde ontwerpen (Classix III en Dayton-3WC sommeren binnen 1 dB van de metingen van de ontwerpers) en elke rekenkern is getoetst aan een onafhankelijke Python-referentie. Maar elk model vereenvoudigt. Loop je met je project tegen zo'n grens aan, dan verschijnt hij als **◇ Buiten model** in de controlelijst van die stap: niet rood, telt niet mee in "Alles oplossen", wel met uitleg wat het voor je resultaat betekent en wat je kunt doen. Met "Bekend, niet meer melden" zet je hem weg. Onderaan elke stap, onder "Wat dit modelleert en wat niet", staan alle grenzen van die stap; in ⓘ Over LobeWise staat het hele overzicht.
+
+![Een modelgrens als ◇ in de controlelijst van stap 3, met uitleg en de knop "Bekend, niet meer melden".](img/limit-check.webp)
+*Een modelgrens als ◇ in de controlelijst van stap 3, met uitleg en de knop "Bekend, niet meer melden".*
+
+| Grens | Wat LobeWise doet | Wat je kunt doen |
+|---|---|---|
+| T/S-model zonder conusbreakup | Een driver zonder FRD is een zuiger uit zijn Thiele/Small-waarden | Laad de FRD van de fabrikant of meet in M1 |
+| Richtwerking uit een model | Geometrie, zuiger en baffle-diffractie in plaats van gemeten polars | Importeer polars of meet ze; voor een volledige spinorama is VituixCAD de maatstaf |
+| Hoorn en transmissielijn | Eenvoudig segmentmodel, geen golfvoortplanting | Ontwerp de lijn of hoorn in Hornresp; de knop kopieert de driverparameters |
+| Trapbaffle | Looptijd wel, de extra diffractierand niet | Houd de trap klein, rond af, meet na de bouw |
+| Afgeronde of afgeschuinde randen | Diffractie van een scherp rechthoekig front | Reken op een gladdere respons dan getoond; exact met BEM (ABEC, AKABAK) |
+| Hoge niveaus | Geen vervorming, geen thermische compressie | Houd marge op Xmax; kies meer Xmax of een groter Sd |
+| Vulling | Volumewinst en absorptie, geen akoestische simulatie | Meet de impedantiepiek voor en na het vullen |
+| Paneelresonanties | Stijve, stille wanden | 18 mm of dikker, een verstijving per 30–40 cm (zaagplan) |
+| Kamer | Rechthoek, spiegelbronnen tot de tweede orde, modi onder Schroeder | Begrijp de dips hier, meet de echte kamer in M1 |
+| Meten | Alleen frequentierespons | THD, waterfall en impedantie met REW, dan importeren |
+
+![Het overzicht "Grenzen van het model" in ⓘ Over LobeWise.](img/limits-about.webp)
+*Het overzicht "Grenzen van het model" in ⓘ Over LobeWise.*
+
+Kort: voor een ontwerp op basis van fabrieksdata of eigen metingen, in een rechthoekige kast, is LobeWise compleet. Voor hoorns, waveguides, BEM-diffractie, vervormingsmetingen en volledig gemeten spinorama's blijven Hornresp, ABEC, REW en VituixCAD nodig; LobeWise zegt je wanneer.
+
 ## Veelgemaakte fouten
 
 - **Te veel bas willen uit een kleine kast.** Zet basbeheer aan of accepteer een hogere ondergrens. Een kleine luidspreker die niet te diep hoeft, klinkt strakker dan een die overvraagd wordt.
